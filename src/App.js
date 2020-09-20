@@ -5,6 +5,8 @@ import './App.css'
 
 import Recipe from './components/recipe'
 
+const axios=require("axios")
+
 
 const App =props=>{
 
@@ -24,12 +26,28 @@ const App =props=>{
     console.log("fetching")
   },[query])
   
-  const getRecipes = async()=>{
-    const response= await fetch(url);
-    const data= await response.json();
+  // const getRecipes = async()=>{
+  //   const response= await fetch(url);
+  //   const data= await response.json();
 
-    setRecipes(data.hits)
-    console.log(data.hits)
+  //   setRecipes(data.hits)
+  //   console.log(data.hits)
+  // }
+
+  const getRecipes = ()=>{
+    axios
+      .get("http://localhost:3000/cakes")
+      .then(response=> {
+        // handle success
+        console.log(response.data);
+        console.log("successful");
+        setRecipes(response.data)
+      })
+      .catch(error => {
+        // handle error
+        console.log(error);
+      }) 
+  
   }
 
   const onChangeValue=(e)=>{
@@ -42,7 +60,6 @@ const App =props=>{
     e.preventDefault();
     setQuery(search)
   }
-
     return (
       <div className="App">
         <h1 class="display-2 text-center"><strong>Cake Recipes</strong></h1>
@@ -52,10 +69,12 @@ const App =props=>{
         </form>
 
         <div className="row">
-          {recipes.map((recipe,index)=>(
-          <Recipe key={index} title={recipe.recipe.label} calories={recipe.recipe.calories} image={recipe.recipe.image} ingredients={recipe.recipe.ingredients} />
-
-        ))}
+          {
+            recipes.map((recipe,index)=>(
+              //<Recipe key={index} title={recipe.recipe.label} calories={recipe.recipe.calories} image={recipe.recipe.image} ingredients={recipe.recipe.ingredients} />
+              <Recipe key={index} title={recipe.label} calories={recipe.calories} image={recipe.image} ingredients={recipe.ingredients} />  
+            ))
+        }
           
         </div>
 

@@ -13,6 +13,7 @@
     "react-scripts": "3.4.1",
     "tailwindcss": "^1.4.6",
     "uuid": "^8.2.0"
+    
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,5 +36,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+    
   }
 }
