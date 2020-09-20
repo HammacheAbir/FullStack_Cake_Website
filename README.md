@@ -1,5 +1,7 @@
 # Cake_recipes
 
+A Website built following MERN Stack, it shows cakes their images and how much colories they contain.
+
 ### About
 
 This is a fullstack MERN website that shows cake recipes and helps you look for any recipe you want.
