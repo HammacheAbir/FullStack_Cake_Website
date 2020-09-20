@@ -7,8 +7,8 @@ const Recipe=(props)=> {
         <div className="card-body">
             <h5 className="card-title">{props.title}</h5>
             <p className="card-text"><strong>Calories value :</strong> {props.calories} <strong>kcal</strong></p>
-            <p><strong>Ingredients: </strong> </p>
-            {/* <ul className="card-text">
+            {/* <p><strong>Ingredients: </strong> </p>
+            <ul className="card-text">
                 {props.ingredients.map((ingredient)=>(
                     <li>
                         {ingredient.text}

@@ -9,42 +9,25 @@ const axios=require("axios")
 
 
 const App =props=>{
-
-  const app_id ="d32e923d"
-  const app_key="e65acf9f9abef8dc227851b6e8981276"
   
-  
- 
   const [recipes, setRecipes]= useState([]);
   const [search, setSearch]= useState('');
   const [query, setQuery]= useState('cake');
 
-  const url =`https://api.edamam.com/search?q=${query}&app_id=${app_id}&app_key=${app_key}` 
+  const url ="http://localhost:3000/cakes" 
   
   useEffect(()=>{
     getRecipes();
     console.log("fetching")
   },[query])
-  
-  // const getRecipes = async()=>{
-  //   const response= await fetch(url);
-  //   const data= await response.json();
-
-  //   setRecipes(data.hits)
-  //   console.log(data.hits)
-  // }
 
   const getRecipes = ()=>{
     axios
-      .get("http://localhost:3000/cakes")
+      .get(url)
       .then(response=> {
-        // handle success
-        console.log(response.data);
-        console.log("successful");
         setRecipes(response.data)
       })
       .catch(error => {
-        // handle error
         console.log(error);
       }) 
   
@@ -67,18 +50,13 @@ const App =props=>{
           <input className="form-control" type="text" value={search} onChange={onChangeValue}/>
           <button className="btn btn-primary" type="submit"> search </button>
         </form>
-
         <div className="row">
           {
             recipes.map((recipe,index)=>(
-              //<Recipe key={index} title={recipe.recipe.label} calories={recipe.recipe.calories} image={recipe.recipe.image} ingredients={recipe.recipe.ingredients} />
               <Recipe key={index} title={recipe.label} calories={recipe.calories} image={recipe.image} ingredients={recipe.ingredients} />  
             ))
         }
-          
         </div>
-
-
       </div>
     );
   
